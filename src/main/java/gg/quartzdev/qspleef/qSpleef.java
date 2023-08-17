@@ -1,5 +1,7 @@
 package gg.quartzdev.qspleef;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import gg.quartzdev.qspleef.metrics.Metrics;
 
@@ -25,6 +27,11 @@ public final class qSpleef extends JavaPlugin {
         // Plugin shutdown logic
 
 //
+    }
+
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+
+        return true;
     }
 
 

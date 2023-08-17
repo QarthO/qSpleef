@@ -2,14 +2,21 @@
 
 ---
 # qSpleef
+> Description...
 
 ### Supported Versions: 1.19-1.20.1
 ### Supports Servers: [Paper](https://papermc.io), [Pufferfish](https://pufferfish.host/downloads), [Purpur](https://purpurmc.org), or any other __stable__ paper fork
->***qSpleef might work Spigot and Hybrids but are <u>not</u> officially support.***
+> qSpleef may work with Spigot or modded Hybrids but are <ins>not</ins> officially supported, and will recieve no support
 
 ---
-Open source easy to setup
+> Images...
+## Setup
+> setup video....
+## Commands
+> command table
 
+## Permissions
+> permission table
 ---
 
 This plugin uses [bStats](https://bstats.org/). You can opt-out in the bStats config

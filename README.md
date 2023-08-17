@@ -5,7 +5,7 @@
 
 ### Supported Versions: 1.19-1.20.1
 ### Supports Servers: [Paper](https://papermc.io), [Pufferfish](https://pufferfish.host/downloads), [Purpur](https://purpurmc.org), or any other __stable__ paper fork
->***qSpleef might work Spigot and Hybrids but are **not** officially support.***
+>***qSpleef might work Spigot and Hybrids but are <u>not</u> officially support.***
 
 ---
 Open source easy to setup

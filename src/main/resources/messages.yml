@@ -1,0 +1,8 @@
+# qSpleef messages
+
+# Supports MiniMessage format
+# Documentation: https://docs.advntr.dev/minimessage/format.html
+# Online Viewer: https://webui.advntr.dev
+
+# The prefix that is displayed before every message in chat
+chat-prefix: "<gray>[<light_purple>q<aqua>Spleef<gray>]"

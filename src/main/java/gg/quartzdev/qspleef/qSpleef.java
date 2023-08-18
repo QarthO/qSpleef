@@ -1,5 +1,6 @@
 package gg.quartzdev.qspleef;
 
+import net.kyori.adventure.audience.Audience;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,12 +29,5 @@ public final class qSpleef extends JavaPlugin {
 
 //
     }
-
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-
-        return true;
-    }
-
-
 
 }

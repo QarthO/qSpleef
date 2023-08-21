@@ -1,12 +1,12 @@
 package gg.quartzdev.qspleef;
 
-import net.kyori.adventure.audience.Audience;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 import gg.quartzdev.qspleef.metrics.Metrics;
+import gg.quartzdev.qspleef.util.Logger;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public final class qSpleef extends JavaPlugin {
+
+    private qSpleef plugin;
 
     @Override
     public void onEnable() {
@@ -16,6 +16,8 @@ public final class qSpleef extends JavaPlugin {
         getLogger().info("Enabling bStats Metrics");
         int pluginId = 18477;
         Metrics metrics = new Metrics(this, pluginId);
+
+        Logger.log(Language.ERROR_COMMAND_NOT_FOUND);
 
 //        register listeners
 //

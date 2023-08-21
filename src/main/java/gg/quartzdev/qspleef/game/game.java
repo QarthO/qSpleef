@@ -11,9 +11,9 @@ public class game {
     private SpleefArena arena;
     private HashMap<SpleefPlayer, SpleefPlayerState> spleefPlayerList;
 
-    private GameState;
+//    private GameState;
 
     public boolean start() {
-
+        return true;
     }
 }

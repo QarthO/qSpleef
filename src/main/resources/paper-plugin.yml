@@ -1,11 +1,8 @@
 name: qGPTrust
 version: '${project.version}'
-main: gg.quartzdev.qgptrust.qGPTrust
+main: gg.quartzdev.qspleef.qSpleef
 authors: [QarthO]
 website: https://quartzdev.gg/
-description: GriefPrevention addon - new claims remember who you trusted
+description: The modern Spleef plugin powered by QuartzDev
 api-version: '1.19'
-dependencies:
-  - name: GriefPrevention
-    required: true
-prefix: qGPTrust
+prefix: qSpleef

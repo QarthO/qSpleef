@@ -5,9 +5,10 @@ import org.bukkit.Material;
 
 import java.util.UUID;
 
-public class SpleefArena {
+public class Arena {
 
-    private UUID arenaID;
+    private UUID id;
+    private String name;
     private Material floorMaterial;
     private int minY;
 //    The min players an arena needs before auto-starting
@@ -30,12 +31,13 @@ public class SpleefArena {
     private boolean antiCamping;
 //    - the delay in seconds until the blocks are destroyed below the player after not moving
     private int campingDelay;
-    public SpleefArena(){
-        this.arenaID = UUID.randomUUID();
+    public Arena(){
+        this.id = UUID.randomUUID();
     }
 
-    public SpleefArena(UUID arenaID, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){
-        this.arenaID = arenaID;
+    public Arena(String name, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){
+        this.id = UUID.randomUUID();
+        this.name = name;
         this.floorMaterial = floorMaterial;
         this.minY = minY;
         this.minPlayers = minPlayers;
@@ -51,5 +53,13 @@ public class SpleefArena {
 
     public boolean isSetup(){
         return true;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public UUID getID(){
+        return this.id;
     }
 }

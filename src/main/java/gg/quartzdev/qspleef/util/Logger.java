@@ -1,6 +1,6 @@
 package gg.quartzdev.qspleef.util;
 
-import gg.quartzdev.qspleef.Language;
+import gg.quartzdev.qspleef.files.Language;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -38,6 +38,10 @@ public class Logger {
     public static void error(String msg){
         log("<red>" + msg);
 //        TODO: log errors to a file
+    }
+
+    public static void error(Language langMsg){
+        error(langMsg.getMessage());
     }
 
 }

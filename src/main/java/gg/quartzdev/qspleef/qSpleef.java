@@ -1,5 +1,6 @@
 package gg.quartzdev.qspleef;
 
+import gg.quartzdev.qspleef.files.Language;
 import gg.quartzdev.qspleef.metrics.Metrics;
 import gg.quartzdev.qspleef.util.Logger;
 import org.bukkit.plugin.java.JavaPlugin;

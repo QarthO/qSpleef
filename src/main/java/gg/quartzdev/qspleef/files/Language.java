@@ -1,9 +1,11 @@
-package gg.quartzdev.qspleef;
+package gg.quartzdev.qspleef.files;
 
 public enum Language {
     CHAT_PREFIX("[HELLO]"),
 
-    ERROR_COMMAND_NOT_FOUND("<red>Command not found: <reset>");
+    ERROR_COMMAND_NOT_FOUND("<red>Command not found: <reset>"),
+    ERROR_CREATE_ARENAS_FILE("<red>Failed to create 'arenas.yml'"),
+    ERROR_SAVE_ARENAS_FILE("<red>Failed to save 'arenas.yml'");
 
     private String message;
 

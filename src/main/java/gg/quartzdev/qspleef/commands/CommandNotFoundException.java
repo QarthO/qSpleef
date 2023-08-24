@@ -1,6 +1,6 @@
 package gg.quartzdev.qspleef.commands;
 
-import gg.quartzdev.qspleef.Language;
+import gg.quartzdev.qspleef.files.Language;
 
 public class CommandNotFoundException extends Exception {
 

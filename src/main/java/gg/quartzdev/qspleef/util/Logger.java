@@ -1,6 +1,5 @@
 package gg.quartzdev.qspleef.util;
 
-import gg.quartzdev.qspleef.files.Language;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;

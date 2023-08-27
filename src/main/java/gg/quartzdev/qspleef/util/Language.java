@@ -1,4 +1,4 @@
-package gg.quartzdev.qspleef.files;
+package gg.quartzdev.qspleef.util;
 
 public enum Language {
     CHAT_PREFIX("[HELLO]"),

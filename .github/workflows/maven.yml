@@ -35,5 +35,5 @@ jobs:
         
     - uses: actions/upload-artifact@v3
       with:
-        name: qGPTrust-${{ env.snapshotVersion }}-${{ env.git_hash }}.jar
-        path: ${{ env.artifactPath }}/qGPTrust-${{ env.snapshotVersion }}.jar
+        name: $(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)-${{ env.snapshotVersion }}-${{ env.git_hash }}.jar
+        path: ${{ env.artifactPath }}/$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)-${{ env.snapshotVersion }}.jar

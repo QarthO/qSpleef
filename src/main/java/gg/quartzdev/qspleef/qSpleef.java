@@ -1,6 +1,7 @@
 package gg.quartzdev.qspleef;
 
-import gg.quartzdev.qspleef.files.Language;
+import gg.quartzdev.qspleef.commands.CommandHandler;
+import gg.quartzdev.qspleef.util.Language;
 import gg.quartzdev.qspleef.metrics.Metrics;
 import gg.quartzdev.qspleef.util.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +20,8 @@ public final class qSpleef extends JavaPlugin {
         Metrics metrics = new Metrics(this, pluginId);
 
         Logger.log(Language.ERROR_COMMAND_NOT_FOUND);
+
+        getCommand("qspleef").setExecutor(new CommandHandler());
 
 //        register listeners
 //

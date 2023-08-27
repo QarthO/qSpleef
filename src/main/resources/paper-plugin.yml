@@ -1,4 +1,4 @@
-name: qGPTrust
+name: '${project.name}'
 version: '${project.version}'
 main: gg.quartzdev.qspleef.qSpleef
 authors: [QarthO]

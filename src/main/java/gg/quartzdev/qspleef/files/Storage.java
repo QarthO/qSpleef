@@ -2,6 +2,7 @@ package gg.quartzdev.qspleef.files;
 
 import gg.quartzdev.qspleef.arena.Arena;
 import gg.quartzdev.qspleef.qSpleef;
+import gg.quartzdev.qspleef.util.Language;
 import gg.quartzdev.qspleef.util.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -19,7 +20,6 @@ public class Storage {
 
     public Storage(){
         check(arenasFile);
-
     }
 
     private void check(File file){

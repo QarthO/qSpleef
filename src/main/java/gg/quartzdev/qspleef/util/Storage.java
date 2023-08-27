@@ -1,4 +1,4 @@
-package gg.quartzdev.qspleef.files;
+package gg.quartzdev.qspleef.util;
 
 import gg.quartzdev.qspleef.arena.Arena;
 import gg.quartzdev.qspleef.qSpleef;

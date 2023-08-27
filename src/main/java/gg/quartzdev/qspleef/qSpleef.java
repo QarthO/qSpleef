@@ -1,14 +1,15 @@
 package gg.quartzdev.qspleef;
 
-import gg.quartzdev.qspleef.commands.CommandHandler;
-import gg.quartzdev.qspleef.util.Language;
 import gg.quartzdev.qspleef.metrics.Metrics;
-import gg.quartzdev.qspleef.util.Logger;
+import gg.quartzdev.qspleef.util.CommandManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Locale;
 
 public final class qSpleef extends JavaPlugin {
 
     private qSpleef plugin;
+    private CommandManager commandManager;
 
     @Override
     public void onEnable() {
@@ -19,12 +20,9 @@ public final class qSpleef extends JavaPlugin {
         int pluginId = 18477;
         Metrics metrics = new Metrics(this, pluginId);
 
-        Logger.log(Language.ERROR_COMMAND_NOT_FOUND);
+        commandManager = new CommandManager(getName(), this);
 
-        getCommand("qspleef").setExecutor(new CommandHandler());
 
-//        register listeners
-//
 
 
     }

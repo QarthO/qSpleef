@@ -33,9 +33,9 @@ jobs:
         echo "projectName=$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)" >> $GITHUB_ENV
         echo "snapshotVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
         echo "artifactPath=$(pwd)/target" >> $GITHUB_ENV
-        mv "$(pwd)/target/$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)-$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout).jar" "$(pwd)/target/$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)-$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-$(git rev-parse --short "$GITHUB_SHA").jar"
+        mv "$(pwd)/target/$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)-$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout).jar" "$(pwd)/target/$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)-v$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-$(git rev-parse --short "$GITHUB_SHA").jar"
         
     - uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.projectName }}-${{ env.snapshotVersion }}-${{ env.git_hash }}.jar
-        path: ${{ env.artifactPath }}/${{ env.projectName }}-${{ env.snapshotVersion }}-${{ env.git_hash }}.jar
+        name: ${{ env.projectName }}-v${{ env.snapshotVersion }}-${{ env.git_hash }}.jar
+        path: ${{ env.artifactPath }}/${{ env.projectName }}-v${{ env.snapshotVersion }}-${{ env.git_hash }}.jar

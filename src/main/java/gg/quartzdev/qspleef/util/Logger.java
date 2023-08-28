@@ -39,6 +39,12 @@ public class Logger {
 //        TODO: log errors to a file
     }
 
+    public static void error(StackTraceElement[] error){
+        for(StackTraceElement e : error){
+            error(e.toString());
+        }
+    }
+
     public static void error(Language langMsg){
         error(langMsg.getMessage());
     }

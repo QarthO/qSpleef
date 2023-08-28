@@ -26,6 +26,12 @@ public class Util {
         sender.sendMessage(parse);
     }
 
+    public static void sendMessage(CommandSender sender, Language msg){
+        MiniMessage mm = MiniMessage.miniMessage();
+        Component parse = mm.deserialize(PREFIX + " " + msg.getMessage());
+        sender.sendMessage(parse);
+    }
+
     /**
      * Sends a message to the player
      * Supports MiniMessage format

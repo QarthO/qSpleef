@@ -35,8 +35,8 @@ public class Arena {
         this.id = UUID.randomUUID();
     }
 
-    public Arena(String name, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){
-        this.id = UUID.randomUUID();
+    public Arena(UUID id, String name, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){
+        this.id = id;
         this.name = name;
         this.floorMaterial = floorMaterial;
         this.minY = minY;

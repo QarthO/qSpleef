@@ -15,22 +15,32 @@ import java.io.IOException;
 public class Storage {
 
     private Plugin plugin = qSpleef.getPlugin(qSpleef.class);
+    FileConfiguration config;
     FileConfiguration arenasStorage;
     File arenasFile;
 
-    public Storage(){
-        check(arenasFile);
+    public Storage(qSpleef plugin){
+
+//        Sets up data folder and config
+        config = plugin.getConfig();
+        config.options().copyDefaults(true);
+        plugin.saveConfig();
+
+//        Sets up arenas storage
+        arenasFile = this.setup("arenas.yml");
     }
 
-    private void check(File file){
-        arenasFile = new File(plugin.getDataFolder(), "arenas");
-        if(file.exists()) return;
+    private File setup(String name){
+        Logger.log("" + plugin.getDataFolder().getAbsolutePath());
+        File file = new File(plugin.getDataFolder(), name);
         try {
             file.createNewFile();
             arenasStorage = YamlConfiguration.loadConfiguration(file);
         } catch(IOException e){
+            Logger.error(e.getStackTrace());
             Logger.error(Language.ERROR_CREATE_ARENAS_FILE);
         }
+        return file;
     }
 
     public void saveArena(Arena arena){
@@ -45,6 +55,10 @@ public class Storage {
                 Logger.error(Language.ERROR_SAVE_ARENAS_FILE);
             }
         });
+    }
+
+    public void saveAll(){
+
     }
 
 }

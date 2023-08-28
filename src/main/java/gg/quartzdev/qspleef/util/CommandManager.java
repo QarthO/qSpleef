@@ -34,6 +34,7 @@ public class CommandManager extends Command {
             return false;
         }
         if(args.length == 0){
+            Util.sendMessage(sender, Language.INFO_PLUGIN);
             return true;
         }
         if(args.length == 1){

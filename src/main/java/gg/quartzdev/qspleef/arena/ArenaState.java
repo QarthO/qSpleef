@@ -4,7 +4,7 @@ public enum ArenaState {
     INCOMPLETE,
     LOCKED,
     READY,
-    IN_USE,
+    PLAYING,
     RESETTING,
     BROKEN
 }

@@ -1,0 +1,172 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                       qSpleef                        | #
+# |   Source:   https://github.com/QarthO/qSpleef        | #
+# |   Wiki:     https://wiki.quartzdev.gg/qspleef        | #
+# |   Download: https://modrinth.com/plugin/qgptrust/    | #
+# |   Discord:  https://quartzdev.gg/discord/            | #
+# |   Donate:   https://paypal.me/qartho                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+config-version: "1.0-alpha1"
+debug: false
+check-for-updates: true
+
+# If enabled, everyone has access to basic spleef permissions
+# Same as giving 'qspleef.basic' permission to your default group
+default-access: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                      Broadcasts                      | #
+# +------------------------------------------------------+ #
+############################################################
+
+broadcast:
+  win:
+    enabled: true
+    everyone: true
+  join:
+    enabled: true
+    everyone: false
+  leave:
+    enabled: true
+    everyone: false
+  spectate:
+    enabled: false
+    everyone: false
+  start:
+    enabled: true
+    everyone: false
+#    At what time countdown messages are sent when the game is starting
+    countdown:
+      - 30
+      - 10
+      - 5
+      - 4
+      - 3
+      - 2
+      - 1
+
+############################################################
+# +------------------------------------------------------+ #
+# |                      Game Start                      | #
+# +------------------------------------------------------+ #
+############################################################
+
+game-start:
+#  The amount of seconds to start the countdown when the
+#  minimum amount of players join an arena
+  countdown: 30
+#  The amount of seconds to start the countdown when the
+#  forcestart command is used
+  force-start-delay: 5
+#
+  freeze
+
+
+
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Sign Text Formatting                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Signs support MiniMessage color formatting
+# For more info: https://docs.advntr.dev/minimessage/format.html
+# Available Spleef Placeholders:
+# <prefix>      | Required: Yes : The prefix can be edited in the messages.yml
+# <arena>       | Required: Yes : Name of the arena
+# <status>      | Required: No  : The status of the arena, can be edited below
+# <join-status> | Required: No  : Custom message depending on the arena state
+
+# Note: To setup a sign, you must use the '/spleef setsign' commmand
+
+#
+sign-text:
+    line-1: "<prefix>"
+    line-2: "<gold><bold><arena>"
+    line-3: "<join-status>"
+    line-4: "<status>"
+
+# Placeholders for sign text
+sign-status-placeholders:
+#    <status> Placeholder
+    status:
+      locked: "<red>LOCKED"
+      ready: "<green>Ready"
+      in-use: "<yellow><current-players>/<max-players>"
+      resetting: "<yellow>Resetting"
+
+#    <join-status> Placeholder
+    join-status:
+      locked: ""
+      ready: "<green>Click to join"
+      in-use: "<green>Click to spectate"
+      resetting: ""
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Spleef Arena Defaults                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+
+# These are the default settings for an arena
+# Arenas with defaults enabled will use these instead
+default-arena-settings:
+#  Min players required to start the arena
+  min-players: 6
+#  Maximum amount of players allowed in an arena
+  max-players: 24
+
+  rewards:
+#    Amount of money to give the player
+#    Requires an economy plugin such as fault
+    money: 0
+
+#    Server command to be ran after a game is complete
+#    Supported Placeholders:
+#     <player>  | The player that won the arena
+#     <arena>   | Name of the arena
+    commands:
+#      - crate give <player> spleef<arena> 1
+#      - give <player> minecraft:diamond 1
+  gamerules:
+
+#    If players recieve snowballs after destroying a block
+    snowballs:
+      enabled: true
+#      How many snowballs per block destroyed
+      amount-per-block: 8
+#      How mnay snowballs each player starts with when the game starts
+      start: 0
+
+#    If a player stands still destroy the block underneath them
+    anti-camping:
+      enabled: true
+#      How long (seconds) until the block is broken if the player is in the same spot
+      time: 5
+#      A warning system so a player knows they should move or not when standing still
+      warning:
+        enabled: true
+        sound:
+          enabled: true
+#          List of Available sounds: https://jd.papermc.io/paper/1.12/org/bukkit/Sound.html
+          name: "BLOCK_DISPENSER_FAIL"
+#          Value between 0.0 and 1.0, The higher the value, the louder the sound.
+          volume: 1.0
+#          Value between 0.0 and 2.0. The higher the value, the higher the pitch.
+          pitch: 2.0
+        title:
+          enabled: true
+#          Available Titles: actionbar, subtitle, title
+          position: 'actionbar'
+        countdown:
+          - 3
+          - 2
+          - 1

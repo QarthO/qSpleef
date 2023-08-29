@@ -47,7 +47,24 @@ public class Storage {
         String id = arena.getID().toString();
 //        TODO: check storage schema version, and convert/update if needed
         arenasStorage.set("version", plugin.getPluginMeta().getVersion());
-        arenasStorage.set("arenas." + id, arena.getName());
+        arenasStorage.set("arenas." + id + ".name", arena.getName());
+        arenasStorage.set("arenas." + id + ".state", arena.getState());
+        arenasStorage.set("arenas." + id + ".tp-locations", arena.getName());
+        arenasStorage.set("arenas." + id + ".bounds", arena.getName());
+        arenasStorage.set("arenas." + id + ".floor-material", arena.getName());
+        arenasStorage.set("arenas." + id + ".min-players", arena.getName());
+        arenasStorage.set("arenas." + id + ".max-players", arena.getName());
+        arenasStorage.set("arenas." + id + ".max-players", arena.getName());
+        arenasStorage.set("arenas." + id + ".max-players", arena.getName());
+        arenasStorage.set("arenas." + id + ".max-players", arena.getName());
+//        Save Gamerules
+//        - Snowballs
+        arenasStorage.set("arenas." + id + ".gamerules.snowballs.enabled", arena.getName());
+        arenasStorage.set("arenas." + id + ".gamerules.snowballs.amount", arena.getName());
+//        -
+        arenasStorage.set("arenas." + id + ".gamerules", arena.getName());
+
+
         Bukkit.getAsyncScheduler().runNow(plugin, scheduledTask -> {
             try {
                 arenasStorage.save(arenasFile);

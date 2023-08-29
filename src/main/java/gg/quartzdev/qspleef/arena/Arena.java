@@ -3,12 +3,16 @@ package gg.quartzdev.qspleef.arena;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Arena {
 
     private UUID id;
     private String name;
+
+    private ArenaState state;
     private Material floorMaterial;
     private int minY;
 //    The min players an arena needs before auto-starting
@@ -33,6 +37,8 @@ public class Arena {
     private int campingDelay;
     public Arena(){
         this.id = UUID.randomUUID();
+        this.setState(ArenaState.INCOMPLETE);
+
     }
 
     public Arena(UUID id, String name, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){
@@ -51,8 +57,26 @@ public class Arena {
         this.campingDelay = campingDelay;
     }
 
-    public boolean isSetup(){
-        return true;
+    public List<String> isSetup(){
+        List<String> missing = new ArrayList<>();
+//        If missing and id or name, something is broken
+        if(this.id == null) return null;
+        if(this.name == null) return null;
+
+//        Minimum Requirements for an arena to be playable
+        if(this.joinLocation == null) missing.add("Join location");
+        if(this.leaveLocation == null) missing.add("Leave Location");
+        if(this.spectateLocation == null) missing.add("Spectate Location");
+
+        return missing;
+    }
+
+    public ArenaState getState(){
+        return this.state;
+    }
+
+    public void setState(ArenaState state){
+        this.state = state;
     }
 
     public String getName(){

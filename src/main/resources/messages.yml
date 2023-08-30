@@ -1,4 +1,10 @@
-# qSpleef messages
+############################################################
+# +------------------------------------------------------+ #
+# |                    qSpleef Messages                  | #
+# |   Languages:  https://lang.quartzdev.gg/qspleef/     | #
+# |   Donate:     https://paypal.me/qartho               | #
+# +------------------------------------------------------+ #
+############################################################
 
 # Supports MiniMessage format
 # Documentation: https://docs.advntr.dev/minimessage/format.html
@@ -6,3 +12,54 @@
 
 # The prefix that is displayed before every message in chat
 chat-prefix: "<gray>[<light_purple>q<aqua>Spleef<gray>]"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Sign Text Formatting                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Signs support only color formatting
+# For more info: https://docs.advntr.dev/minimessage/format.html
+# Available Spleef Placeholders on signs:
+# <chat-prefix>   | Required: Yes | The prefix can be edited above
+# <arena>         | Required: Yes | Name of the arena
+# <state-status>  | Required: No  | Depends on the arena state
+# <state-info>    | Required: No  | Depends on the arena state
+
+# Arena States:
+# default     | Not a state, but text defaults to this if none given
+# locked      | When an arena is locked by an admin using '/spleef lock <arena>'
+# ready       | When an arena is ready to be joined
+# starting    | When an arena has started it's countdown to begin playing
+# playing     | When a game is currently active
+# resetting   | After a game is finished, and the floor is being reset
+# broken      | If an arena is ever broken, An arena "should" never be in this state
+
+# Note: To set up a sign, you must use the '/spleef set sign' commmand
+sign:
+  text:
+    line-1: "<chat-prefix>"
+    line-2: "<gold><bold><arena>"
+    line-3: "<info>"
+    line-4: "<status>"
+  placeholders:
+    info:
+      default: ""
+      ready: "<green>Click to join"
+      playing: "<green>Click to spectate"
+    status:
+      default: ""
+      locked: "<red>LOCKED"
+      ready: "<green><current-players>/<max-players>"
+      playing: "<aqua><current-players>/<max-players>"
+      resetting: "<yellow>Resetting"
+
+#  Displays a message on the actionbar when hovering over a spleef sign
+#  Can be toggled in the 'config.yml' under 'sign.toggle.hover'
+  hover:
+    default: ""
+    locked: "<red><arena> is locked"
+    ready: "<green>Right click to join"
+    playing: "<green>Right click to spectate"
+    resetting: "<yellow>Resetting... Please wait"

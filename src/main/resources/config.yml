@@ -1,6 +1,6 @@
 ############################################################
 # +------------------------------------------------------+ #
-# |                       qSpleef                        | #
+# |                    qSpleef Config                    | #
 # |   Source:   https://github.com/QarthO/qSpleef        | #
 # |   Wiki:     https://wiki.quartzdev.gg/qspleef        | #
 # |   Download: https://modrinth.com/plugin/qgptrust/    | #
@@ -13,6 +13,12 @@
 config-version: "1.0-alpha1"
 debug: false
 
+############################################################
+# +------------------------------------------------------+ #
+# |                    General Settings                  | #
+# +------------------------------------------------------+ #
+############################################################
+
 # Checks for update upon server start, or when an admin joins
 check-for-updates: true
 
@@ -20,6 +26,21 @@ check-for-updates: true
 # even without permissions
 # Same as giving 'qspleef.basic' permission to your default group
 default-access: true
+
+# Should spectators be able to join the arena
+spectators:
+  enabled: true
+
+storage:
+#    Supported types: yml, sqlite, mysql
+  type: "yml"
+  mysql:
+    host: "localhost"
+    port: 3306
+    user: "root"
+    password: "password"
+    database: "qspleef"
+    max_connections: 8
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -47,18 +68,18 @@ game-start:
         position: title
       sound:
         enabled: true
-        #          List of Available sounds: https://jd.papermc.io/paper/1.12/org/bukkit/Sound.html
+#          List of Available sounds: https://jd.papermc.io/paper/1.12/org/bukkit/Sound.html
         name: "BLOCK_DISPENSER_FAIL"
-        #          Value between 0.0 and 1.0, The higher the value, the louder the sound.
+#          Value between 0.0 and 1.0, The higher the value, the louder the sound.
         volume: 1.0
-        #          Value between 0.0 and 2.0. The higher the value, the higher the pitch.
+#          Value between 0.0 and 2.0. The higher the value, the higher the pitch.
         pitch: 1.0
-  #  When the game starts should players be teleported randomly around the arena
+#  When the game starts should players be teleported randomly around the arena
   randomize-player-positions:
     enabled: true
-    #    At what time should the players be teleported
+#    At what time should the players be teleported
     countdown-time: 5
-    #    Should they be frozen after being teleported until the game officially starts
+#    Should they be frozen after being teleported until the game officially starts
     freeze: true
 
 ############################################################
@@ -68,85 +89,99 @@ game-start:
 ############################################################
 
 broadcast:
-  #  Broadcasted when a player win a gamea
-  #  Edited in 'messages.yml' in 'broadcast-win'
+#  Broadcasted when a player win a gamea
+#  Edited in 'messages.yml' in 'broadcast-win'
   win:
     enabled: true
     everyone: true
-  #  Broadcasted when a player joins a game
-  #  Edited in 'messages.yml' in 'broadcast-join'
+#  Broadcasted when a player joins a game
+#  Edited in 'messages.yml' in 'broadcast-join'
   join:
     enabled: true
     everyone: false
-  #  Broadcasted when a player leaves a game
-  #  Edited in 'messages.yml' in 'broadcast-leave'
+#  Broadcasted when a player leaves a game
+#  Edited in 'messages.yml' in 'broadcast-leave'
   leave:
     enabled: true
     everyone: false
-  #  Broadcasted when the countdown starts, (only 1 time)
-  #  Edited in 'messages.yml' in 'broadcast-first-countdown'
+#  Broadcasted when the countdown starts, (only 1 time)
+#  Edited in 'messages.yml' in 'broadcast-first-countdown'
   first-countdown:
     enabled: true
     everyone: true
-  #  Broadcasted at the start of a game
-  #  Edited in 'messages.yml' in 'broadcast-start'
+#  Broadcasted at the start of a game
+#  Edited in 'messages.yml' in 'broadcast-start'
   start:
     enabled: true
     everyone: false
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                 Sign Text Formatting                 | #
+# |                        Signs                         | #
 # +------------------------------------------------------+ #
 ############################################################
 
-# Signs support MiniMessage color formatting
-# For more info: https://docs.advntr.dev/minimessage/format.html
-# Available Spleef Placeholders:
-# <prefix>  | Required: Yes | The prefix can be edited in the 'messages.yml'
-# <arena>   | Required: Yes | Name of the arena
-# <status>  | Required: No  | The state of the arena, can be edited below
-# <info>    | Required: No  | Custom message depending on the arena state
-
-# Arena States:
-# default     | Not a state, but text defaults to this if none given
-# locked      | When an arena is locked by an admin using '/spleef lock <arena>'
-# ready       | When an arena is ready to be joined
-# starting    | When an arena has started it's countdown to begin playing
-# playing     | When a game is currently active
-# resetting   | After a game is finished, and the floor is being reset
-
 # Note: To set up a sign, you must use the '/spleef set sign' commmand
+# In order to use a sign, players need 'spleef.basic' permission
+# In order to create a sign, players need 'spleef.admin' permission
 sign:
-  text:
-    line-1: "<chat-prefix>"
-    line-2: "<gold><bold><arena>"
-    line-3: "<info>"
-    line-4: "<status>"
-  placeholders:
-    info:
-      default: ""
-      ready: "<green>Click to join"
-      playing: "<green>Click to spectate"
-    status:
-      default: ""
-      locked: "<red>LOCKED"
-      ready: "<green><current-players>/<max-players>"
-      playing: "<aqua><current-players>/<max-players>"
-      resetting: "<yellow>Resetting"
-
 #  Displays a message on the actionbar when hovering over a spleef sign
   hover:
     enabled: true
-#    Message can change depending on
-#    Leave "" empty for no message to be displayed
-    message:
-      default: ""
-      locked: "<red><arena> is locked"
-      ready: "<green>Right click to join"
-      playing: "<green>Right click to spectate"
-      resetting: "<yellow>Resetting... Please wait"
 
+############################################################
+# +------------------------------------------------------+ #
+# |                    Player Stats                      | #
+# +------------------------------------------------------+ #
+############################################################
+
+stats:
+  enabled: true
+  webui:
+    enabled: false
+    port: 8840
+    internal-ip: 0.0.0.0
+    external-ip: "https://yourdomain.com/spleef"
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Simple Voice Chat                    | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Download:  https://modrinth.com/plugin/simple-voice-chat
+
+# If Simple Voice Chat is installed on the server, qspleef can
+# create group calls for games
+
+# Default settings are recommend
+# Spectators being in a group, but players not means spectators can
+# hear the players, but players can't hear them
+
+# This feature can be turned off, and simple voice chat will work
+# normally. This is strictly for syncing groups.
+
+voice-groups:
+  enabled: true
+#  Should players be automatically put into a group
+  players:
+    enabled: false
+#      Name of the group
+#      <arena> is the name of the arena
+    group-name: "qSpleef-Players: -<arena>"
+#      Password for the group, leave blank for no password
+#       *Note: If password is empty, anyone might be able to join
+#      <arena> is the name of the arena
+#      <rng> is a 4 digit random number
+#      Example: "<arena>-<rng>" turns to "spleef1-3526"
+    password: "<arena>-<rng>"
+#  Should spectators be put into a seperate group
+#  If disabled, spectators will stay in the players group
+  spectators:
+    enabled: true
+    group-name: "qSpleef-Spectators: <arena>"
+    password: "<arena>-<rng>"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -204,7 +239,7 @@ default-arena-settings:
         title:
           enabled: true
 #          Available Titles: actionbar, subtitle, title
-          position: 'actionbar'
+          position: "actionbar"
         countdown:
           - 3
           - 2

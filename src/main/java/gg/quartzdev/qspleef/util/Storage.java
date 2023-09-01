@@ -1,9 +1,7 @@
 package gg.quartzdev.qspleef.util;
 
-import gg.quartzdev.qspleef.arena.Arena;
+import gg.quartzdev.qspleef.game.arena.Arena;
 import gg.quartzdev.qspleef.qSpleef;
-import gg.quartzdev.qspleef.util.Language;
-import gg.quartzdev.qspleef.util.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

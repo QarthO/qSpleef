@@ -1,4 +1,4 @@
-package gg.quartzdev.qspleef.game;
+package gg.quartzdev.qspleef.game.gamerules;
 
 public enum GameRule {
 //    Players recieve

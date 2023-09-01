@@ -24,17 +24,15 @@ chat-prefix: "<gray>[<light_purple>q<aqua>Spleef<gray>]"
 # Available Spleef Placeholders on signs:
 # <chat-prefix>   | Required: Yes | The prefix can be edited above
 # <arena>         | Required: Yes | Name of the arena
-# <state-status>  | Required: No  | Depends on the arena state
-# <state-info>    | Required: No  | Depends on the arena state
+# <info>          | Required: No  | Depends on the arena state
+# <state>         | Required: No  | Depends on the arena state
 
 # Arena States:
-# default     | Not a state, but text defaults to this if none given
 # locked      | When an arena is locked by an admin using '/spleef lock <arena>'
 # ready       | When an arena is ready to be joined
 # starting    | When an arena has started it's countdown to begin playing
 # playing     | When a game is currently active
 # resetting   | After a game is finished, and the floor is being reset
-# broken      | If an arena is ever broken, An arena "should" never be in this state
 
 # Note: To set up a sign, you must use the '/spleef set sign' commmand
 sign:

@@ -1,4 +1,4 @@
-package gg.quartzdev.qspleef.arena;
+package gg.quartzdev.qspleef.game.arena;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -38,7 +38,7 @@ public class Arena {
     public Arena(){
         this.id = UUID.randomUUID();
         this.setState(ArenaState.INCOMPLETE);
-
+        this.name = "POOP";
     }
 
     public Arena(UUID id, String name, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){

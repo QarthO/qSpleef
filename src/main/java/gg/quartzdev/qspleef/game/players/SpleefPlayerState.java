@@ -1,7 +1,7 @@
-package gg.quartzdev.qspleef;
+package gg.quartzdev.qspleef.game.players;
 
 public enum SpleefPlayerState {
-    WAITING,
+    JOINING,
     PLAYING,
     SPECTATING,
 }

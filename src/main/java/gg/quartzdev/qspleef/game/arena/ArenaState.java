@@ -1,4 +1,4 @@
-package gg.quartzdev.qspleef.arena;
+package gg.quartzdev.qspleef.game.arena;
 
 public enum ArenaState {
     INCOMPLETE,

@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 
 public class Logger {
 
-    public static String PREFIX = "<gray>[<light_purple>q<aqua>Spleef<gray>]<reset>";
+    public static String PREFIX = "<gray>[<red>q<aqua>Spleef<gray>]<reset>";
 
     /**
      * Logs a general message

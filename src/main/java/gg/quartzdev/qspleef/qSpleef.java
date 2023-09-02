@@ -33,6 +33,8 @@ public final class qSpleef extends JavaPlugin {
         this.commandManager = new CommandManager(getName().toLowerCase(Locale.ROOT), this);
 //        Spleef Games Manager
         this.gameManager = new GameManager(this);
+
+        Logger.log("<green>qSpleef#onEnable: " + Thread.currentThread().getId() + " - " + Thread.currentThread().getName());
     }
 
     @Override

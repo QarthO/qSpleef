@@ -2,10 +2,12 @@ package gg.quartzdev.qspleef.commands;
 
 import gg.quartzdev.qspleef.qSpleef;
 import gg.quartzdev.qspleef.util.Language;
+import gg.quartzdev.qspleef.util.Logger;
 import gg.quartzdev.qspleef.util.Util;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
+
+import java.util.List;
 
 public abstract class qCommand {
     String label;
@@ -33,7 +35,7 @@ public abstract class qCommand {
 //        runs command
         return logic(sender, args);
     }
-    public abstract void getTabCompletes(CommandSender sender, String[] args);
+    public abstract List<String> getTabCompletes(CommandSender sender, String[] args);
     public abstract boolean logic(CommandSender sender, String[] args);
     public boolean hasPermission(CommandSender sender){
 //        If sender is console
@@ -48,7 +50,9 @@ public abstract class qCommand {
         return false;
     }
     public boolean checkSyntax(CommandSender sender, String[] args){
-        if(args.length != commandSyntax.split(" ").length-2){
+        Logger.log("args.length: " + args.length);
+        Logger.log("commandSyntax.split(\" \"): " + commandSyntax.split(" ").length);
+        if(args.length-1 != commandSyntax.split(" ").length){
             String syntax = "/" + this.label + " " + this.name + " " + this.commandSyntax;
             this.util.sendSyntax(sender, syntax);
             return false;

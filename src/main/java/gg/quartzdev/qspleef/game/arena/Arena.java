@@ -35,10 +35,10 @@ public class Arena {
     private boolean antiCamping;
 //    - the delay in seconds until the blocks are destroyed below the player after not moving
     private int campingDelay;
-    public Arena(){
+    public Arena(String name){
         this.id = UUID.randomUUID();
         this.setState(ArenaState.INCOMPLETE);
-        this.name = "POOP";
+        this.name = name;
     }
 
     public Arena(UUID id, String name, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){

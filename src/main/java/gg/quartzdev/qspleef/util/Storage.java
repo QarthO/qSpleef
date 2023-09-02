@@ -65,6 +65,7 @@ public class Storage {
 
         Bukkit.getAsyncScheduler().runNow(plugin, scheduledTask -> {
             try {
+                Logger.log("<green>Storag#saveArena#scheduledTask: " + Thread.currentThread().getId() + " - " + Thread.currentThread().getName());
                 arenasStorage.save(arenasFile);
             } catch (IOException e) {
                 Logger.error(Language.ERROR_SAVE_ARENAS_FILE);

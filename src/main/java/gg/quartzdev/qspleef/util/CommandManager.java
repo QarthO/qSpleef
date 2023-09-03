@@ -44,7 +44,6 @@ public class CommandManager extends Command {
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String labelOrAlias, @NotNull String[] args) {
 
-        Logger.log("<green>CommandManager#execute: " + Thread.currentThread().getId() + " - " + Thread.currentThread().getName());
         if(args.length == 0){
             util.sendMessage(sender, Language.INFO_PLUGIN);
             return true;
@@ -59,8 +58,6 @@ public class CommandManager extends Command {
 
     @Override
     public @NotNull List<String> tabComplete(@NotNull CommandSender sender, @NotNull String labelOrAlias, String[] args) throws IllegalArgumentException {
-        Logger.log("Tab completing...");
-        Logger.log(Arrays.toString(args));
         List<String> completions = new ArrayList<>();
 
         if(args.length == 0) return completions;
@@ -76,8 +73,6 @@ public class CommandManager extends Command {
             return completions;
         }
         Collections.sort(completions);
-        Logger.log(completions.toString());
-
         return completions;
     }
 

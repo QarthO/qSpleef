@@ -1,17 +1,19 @@
 package gg.quartzdev.qspleef.commands;
 
+import gg.quartzdev.qspleef.game.GameManager;
 import gg.quartzdev.qspleef.game.arena.Arena;
 import gg.quartzdev.qspleef.qSpleef;
+import gg.quartzdev.qspleef.util.Language;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commandcreate extends qCommand {
-    public Commandcreate(String label, String name, qSpleef plugin) {
+public class Commanddelete extends qCommand {
+    public Commanddelete(String label, String name, qSpleef plugin) {
         super(label, name, plugin);
         this.commandSyntax = "<arena-name>";
-        this.permissionNode = "qspleef.admin.create";
+        this.permissionNode = "qspleef.admin.delete";
     }
     @Override
     public List<String> getTabCompletes(CommandSender sender, String[] args) {
@@ -29,7 +31,12 @@ public class Commandcreate extends qCommand {
     public boolean logic(CommandSender sender, String[] args) {
         String arenaName = args[1];
         Arena newArena = new Arena(arenaName);
-        this.plugin.getStorage().saveArena(newArena);
+        GameManager gm = this.plugin.getGameManager();
+        if(gm.getGame(args[1]) == null){
+            util.sendMessage(sender, Language.ERROR_ARENA_NOT_FOUND.setArena(args[1]));
+        }
+
+        this.plugin.getStorage().loadArenas();
         return true;
     }
 }

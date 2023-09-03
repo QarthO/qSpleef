@@ -19,6 +19,8 @@ public class GameManager {
 //    Arena UUID -> Game
     ConcurrentHashMap<UUID, Game> games;
 
+    ConcurrentHashMap<UUID, Arena> arenas;
+
     qSpleef plugin;
     Util util;
 
@@ -37,8 +39,16 @@ public class GameManager {
         return this.games.values();
     }
 
+    public void updateAllArenas(ConcurrentHashMap<UUID, Arena> arenas) {
+        this.arenas = arenas;
+    }
+
     public ConcurrentHashMap<UUID, SpleefPlayer> getSpleefPlayers(){
         return this.spleefPlayers;
+    }
+
+    public Collection<Arena> getArenas(){
+        return this.arenas.values();
     }
 
     public Game getGame(String arenaName){

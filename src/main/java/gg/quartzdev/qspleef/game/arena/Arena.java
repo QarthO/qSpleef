@@ -2,12 +2,14 @@ package gg.quartzdev.qspleef.game.arena;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.configuration.serialization.SerializableAs;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
-public class Arena {
+@SerializableAs("qSpleefArena")
+public class Arena implements ConfigurationSerializable {
 
     private UUID id;
     private String name;
@@ -41,20 +43,20 @@ public class Arena {
         this.name = name;
     }
 
-    public Arena(UUID id, String name, Material floorMaterial, int minY, int minPlayers, int maxPlayers, Location joinLocation, Location leaveLocation, Location spectateLocation, boolean snowballs, int snowballPerBlock, boolean antiCamping, int campingDelay){
-        this.id = id;
-        this.name = name;
-        this.floorMaterial = floorMaterial;
-        this.minY = minY;
-        this.minPlayers = minPlayers;
-        this.maxPlayers = maxPlayers;
-        this.joinLocation = joinLocation;
-        this.leaveLocation = leaveLocation;
-        this.spectateLocation = spectateLocation;
-        this.snowballs = snowballs;
-        this.snowballPerBlock = snowballPerBlock;
-        this.antiCamping = antiCamping;
-        this.campingDelay = campingDelay;
+//    Deserializes from arena storage file
+    public Arena(Map<String, Object> map){
+        this.id = UUID.fromString((String) map.get("id"));
+        this.name = (String) map.get("name");
+        this.state = ArenaState.valueOf((String) map.get("state"));
+        this.floorMaterial = Material.getMaterial((String) map.get("floor-material"));
+//        this.minY = (int) map.get("bottom-floor-y-level");
+        this.minPlayers = (int) map.get("min-players");
+        this.maxPlayers = (int) map.get("max-players");
+//        this.joinLocation = (Location) map.get("join-location");
+//        this.leaveLocation = (Location) map.get("leave-location");
+//        this.spectateLocation = (Location) map.get("spectate-location");
+//        this.snowballs = (boolean) map.get("snowballs");
+//        this.antiCamping = (boolean) map.get("anti-camping");
     }
 
     public List<String> isSetup(){
@@ -98,5 +100,22 @@ public class Arena {
 
     public int getMaxPlayers(){
         return this.maxPlayers;
+    }
+
+    @Override
+    public @NotNull LinkedHashMap<String, Object> serialize() {
+        LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("id", this.getID().toString());
+        map.put("name", this.getName());
+        map.put("state", this.getState().name());
+        map.put("floor-material", this.getFloorMaterial().name());
+        map.put("min-players", this.getMinPlayers());
+        map.put("max-players", this.getMaxPlayers());
+        return map;
+    }
+
+    public static Arena deserialize(Map<String, Object> map) {
+        Arena arena = new Arena(map);
+        return arena;
     }
 }

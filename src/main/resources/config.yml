@@ -27,6 +27,11 @@ check-for-updates: true
 # Same as giving 'qspleef.basic' permission to your default group
 default-access: true
 
+# Instead of using '/qspleef' you can add your own aliases. By
+# default '/spleef' has already been added.
+command-aliases:
+  - spleef
+
 # Should spectators be able to join the arena
 spectators:
   enabled: true
@@ -41,6 +46,27 @@ storage:
     password: "password"
     database: "qspleef"
     max_connections: 8
+
+inventory:
+  join:
+    leave-item:
+      type: "BARRIER"
+      slot: 9
+      name: "<red>Leave"
+#      if spectating is disabled, or the player doesn't have 'qspleef.spectate' players will not recieve this item
+    spectate-item:
+      type: "PLAYER_HEAD"
+      slot: 8
+      name: "<yellow>Spectate"
+  playing:
+    shovel:
+      type: "DIAMOND_SHOVEL"
+      slot: 1
+      name: "" # leaving the name empty will use the default vanilla name
+    snowball:
+      type: "SNOWBALL"
+      slot: 2
+      name: ""
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -219,6 +245,13 @@ default-arena-settings:
       amount-per-block: 8
 #      How mnay snowballs each player starts with when the game starts
       start: 0
+#      the xp level will be equal the number of snowballs the player has
+#      instead of filling up the players inventory, the player will only have 1
+#      snowball in their inventory, but using it will decrease the xp level until
+#      they hit 0, at 0, they will lose the snowball.
+      xp-level:
+        enabled: true
+        max: 999
 
 #    If a player stands still destroy the block underneath them
     anti-camping:

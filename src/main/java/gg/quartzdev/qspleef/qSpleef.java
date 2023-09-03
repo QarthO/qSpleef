@@ -1,11 +1,13 @@
 package gg.quartzdev.qspleef;
 
 import gg.quartzdev.qspleef.game.GameManager;
+import gg.quartzdev.qspleef.game.arena.Arena;
 import gg.quartzdev.qspleef.metrics.Metrics;
 import gg.quartzdev.qspleef.util.CommandManager;
 import gg.quartzdev.qspleef.util.Logger;
 import gg.quartzdev.qspleef.util.Storage;
 import gg.quartzdev.qspleef.util.Util;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Locale;
@@ -21,6 +23,7 @@ public final class qSpleef extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        ConfigurationSerialization.registerClass(Arena.class);
 //        bStats Metrics
         Logger.log("Enabling bStats Metrics");
         int pluginId = 18477;
@@ -34,7 +37,6 @@ public final class qSpleef extends JavaPlugin {
 //        Spleef Games Manager
         this.gameManager = new GameManager(this);
 
-        Logger.log("<green>qSpleef#onEnable: " + Thread.currentThread().getId() + " - " + Thread.currentThread().getName());
     }
 
     @Override

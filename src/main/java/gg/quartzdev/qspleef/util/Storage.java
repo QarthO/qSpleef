@@ -8,10 +8,13 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Storage {
 
-    private qSpleef plugin;
+    private final qSpleef plugin;
     FileConfiguration config;
     FileConfiguration arenasStorage;
     File arenasFile;
@@ -25,16 +28,18 @@ public class Storage {
 
 //        Sets up arenas storage
         arenasFile = this.setup("arenas.yml");
+        this.loadArenas();
     }
 
     private File setup(String name){
         File file = new File(plugin.getDataFolder(), name);
         try {
-            file.createNewFile();
+            if(file.createNewFile())
+                Logger.log("<green>Creating '<yellow>" + name + "<green>'");
             arenasStorage = YamlConfiguration.loadConfiguration(file);
         } catch(IOException e){
             Logger.error(e.getStackTrace());
-            Logger.error(Language.ERROR_CREATE_ARENAS_FILE);
+            Logger.error(Language.ERROR_CREATE_FILE.setFile(file.getName()));
         }
         return file;
     }
@@ -43,33 +48,50 @@ public class Storage {
         String id = arena.getID().toString();
 //        TODO: check storage schema version, and convert/update if needed
         arenasStorage.set("version", plugin.getVersion());
-        arenasStorage.set("arenas." + id + ".name", arena.getName());
-        arenasStorage.set("arenas." + id + ".state", arena.getState().name());
-//        Tp locations
-        arenasStorage.set("arenas." + id + ".tp-locations", arena.getName());
-//        arenasStorage.set("arenas." + id + ".bounds", arena.getName());
-        arenasStorage.set("arenas." + id + ".floor-material", arena.getFloorMaterial().name());
-        arenasStorage.set("arenas." + id + ".min-players", arena.getMinPlayers());
-        arenasStorage.set("arenas." + id + ".max-players", arena.getMaxPlayers());
-//        Save Gamerules
-//        - Snowballs
-        arenasStorage.set("arenas." + id + ".gamerules.snowballs.enabled", arena.getName());
-        arenasStorage.set("arenas." + id + ".gamerules.snowballs.amount", arena.getName());
-//        -
-        arenasStorage.set("arenas." + id + ".gamerules", arena.getName());
-        saveFile(arenasStorage, arenasFile, Language.ERROR_CREATE_ARENAS_FILE);
+        arenasStorage.set("arenas." + id, arena);
+        saveFile(arenasStorage, arenasFile);
+    }
+
+    public void loadArenas(){
+        ConcurrentHashMap<UUID, Arena> arenasMap = new ConcurrentHashMap<>();
+        try {
+            Set<String> f = (Set<String>) arenasStorage.getConfigurationSection("arenas").getKeys(false);
+            if(f == null) {
+                Logger.log("null f");
+                return;
+            }
+            Logger.log("not null f");
+
+        } catch (Exception e){
+            Logger.error(Language.ERROR_READ_FILE.setFile(arenasFile.getName()));
+        }
+//        if(arenaList == null){
+//            Logger.log("null");
+//            return;
+//        }
+//        Logger.log("obj: " + arenaList.getClass().toString());
+
+
+//        if(arenaList == null)
+            return;
+//        if(arenaList.isEmpty())
+//            Logger.log("is empty");
+//        for(Object arena : arenaList){
+//            System.out.println(arena.toString());
+//        }
+
     }
 
     public void saveAll(){
 
     }
 
-    public void saveFile(FileConfiguration fileConfig, File file, Language failMessage){
+    public void saveFile(FileConfiguration fileConfig, File file) {
         Bukkit.getAsyncScheduler().runNow(plugin, scheduledTask -> {
             try {
                 fileConfig.save(file);
             } catch(IOException e) {
-                Logger.error(failMessage);
+                Logger.error(Language.ERROR_SAVE_FILE.setFile(file.getName()));
             }
         });
     }

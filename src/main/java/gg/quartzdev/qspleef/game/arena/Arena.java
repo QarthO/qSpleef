@@ -86,4 +86,17 @@ public class Arena {
     public UUID getID(){
         return this.id;
     }
+
+    public Material getFloorMaterial(){
+//        defaults to Snow_Block if no given material
+        return this.floorMaterial == null ? Material.SNOW_BLOCK : this.floorMaterial;
+    }
+
+    public int getMinPlayers(){
+        return this.minPlayers;
+    }
+
+    public int getMaxPlayers(){
+        return this.maxPlayers;
+    }
 }

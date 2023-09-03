@@ -77,6 +77,7 @@ public class CommandManager extends Command {
         }
         Collections.sort(completions);
         Logger.log(completions.toString());
+
         return completions;
     }
 

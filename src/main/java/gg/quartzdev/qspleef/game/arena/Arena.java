@@ -1,5 +1,6 @@
 package gg.quartzdev.qspleef.game.arena;
 
+import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -16,7 +17,7 @@ public class Arena implements ConfigurationSerializable {
 
     private ArenaState state;
     private Material floorMaterial;
-    private int minY;
+    private int floorBottomLevel;
 //    The min players an arena needs before auto-starting
     private int minPlayers;
     private int maxPlayers;
@@ -27,36 +28,26 @@ public class Arena implements ConfigurationSerializable {
 //    The location a player teleports to upon spectating the arena or after getting out during the game
     private Location spectateLocation;
 
-//Gamerules
-    private boolean autoStart;
-    private int startTimer;
-//    Snowballs (only 1 in inventory, but the amount of snowballs is determined by their exp level)
-    private boolean snowballs;
-    private int snowballPerBlock;
-//    Prevent camping by destroying the blocks below players who arent moving after a certain amount of time
-    private boolean antiCamping;
-//    - the delay in seconds until the blocks are destroyed below the player after not moving
-    private int campingDelay;
+    private final List<GameRule> enabledGameRules;
     public Arena(String name){
         this.id = UUID.randomUUID();
         this.setState(ArenaState.INCOMPLETE);
         this.name = name;
+        this.enabledGameRules = new ArrayList<>();
     }
 
 //    Deserializes from arena storage file
     public Arena(Map<String, Object> map){
-        this.id = UUID.fromString((String) map.get("id"));
         this.name = (String) map.get("name");
         this.state = ArenaState.valueOf((String) map.get("state"));
         this.floorMaterial = Material.getMaterial((String) map.get("floor-material"));
-//        this.minY = (int) map.get("bottom-floor-y-level");
+        this.floorBottomLevel = (int) map.get("floor-level");
         this.minPlayers = (int) map.get("min-players");
         this.maxPlayers = (int) map.get("max-players");
-//        this.joinLocation = (Location) map.get("join-location");
-//        this.leaveLocation = (Location) map.get("leave-location");
-//        this.spectateLocation = (Location) map.get("spectate-location");
-//        this.snowballs = (boolean) map.get("snowballs");
-//        this.antiCamping = (boolean) map.get("anti-camping");
+        this.joinLocation = (Location) map.get("join-location");
+        this.leaveLocation = (Location) map.get("leave-location");
+        this.spectateLocation = (Location) map.get("spectate-location");
+        this.enabledGameRules = (List<GameRule>) map.get("enabled-gamerules");
     }
 
     public List<String> isSetup(){
@@ -94,6 +85,10 @@ public class Arena implements ConfigurationSerializable {
         return this.floorMaterial == null ? Material.SNOW_BLOCK : this.floorMaterial;
     }
 
+    public int getFloorBottomLevel(){
+        return this.floorBottomLevel;
+    }
+
     public int getMinPlayers(){
         return this.minPlayers;
     }
@@ -101,16 +96,33 @@ public class Arena implements ConfigurationSerializable {
     public int getMaxPlayers(){
         return this.maxPlayers;
     }
+    public Location getjoinLocation(){
+        return this.joinLocation;
+    }
+    public Location getLeaveLocation(){
+        return this.leaveLocation;
+    }
+    public Location getSpectateLocation(){
+        return this.spectateLocation;
+    }
+
+    public List<GameRule> getEnabledGameRules(){
+        return this.enabledGameRules;
+    }
 
     @Override
     public @NotNull LinkedHashMap<String, Object> serialize() {
         LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("id", this.getID().toString());
         map.put("name", this.getName());
         map.put("state", this.getState().name());
         map.put("floor-material", this.getFloorMaterial().name());
+        map.put("floor-level", this.getFloorBottomLevel());
         map.put("min-players", this.getMinPlayers());
         map.put("max-players", this.getMaxPlayers());
+        map.put("join-location", this.getjoinLocation());
+        map.put("leave-location", this.getLeaveLocation());
+        map.put("spectate-location", this.getSpectateLocation());
+        map.put("enabled-gamerules", this.getEnabledGameRules());
         return map;
     }
 

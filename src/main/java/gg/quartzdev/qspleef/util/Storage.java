@@ -60,7 +60,11 @@ public class Storage {
                 Logger.log("null f");
                 return;
             }
-            Logger.log("not null f");
+            for(String id : f){
+                Arena arena = (Arena) arenasStorage.get("arenas." + id);
+                if(arena != null)
+                    Logger.log(arena.getName());
+            }
 
         } catch (Exception e){
             Logger.error(Language.ERROR_READ_FILE.setFile(arenasFile.getName()));

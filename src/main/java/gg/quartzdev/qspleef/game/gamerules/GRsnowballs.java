@@ -6,8 +6,7 @@ public class GRsnowballs extends SpleefGameRule {
 
     public GRsnowballs(qSpleef plugin) {
         super(plugin);
-        this.name = "snowballs";
-
+        this.name = this.getClass().getName().replaceFirst("GR", "");
     }
 
     @Override

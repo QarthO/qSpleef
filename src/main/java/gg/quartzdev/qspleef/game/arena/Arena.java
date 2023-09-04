@@ -1,5 +1,6 @@
 package gg.quartzdev.qspleef.game.arena;
 
+import gg.quartzdev.qspleef.util.Logger;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,14 +20,9 @@ public class Arena implements ConfigurationSerializable {
     private Material floorMaterial;
     private int floorBottomLevel;
 //    The min players an arena needs before auto-starting
-    private int minPlayers;
-    private int maxPlayers;
-//    The location a player teleports to upon joining the arena
-    private Location joinLocation;
-//    The location a player teleports to upon leaving the arena
-    private Location leaveLocation;
-//    The location a player teleports to upon spectating the arena or after getting out during the game
-    private Location spectateLocation;
+    private int minPlayers, maxPlayers;
+//    The location a player teleports to when...
+    private Location joinLocation, leaveLocation, spectateLocation;
 
     private final List<GameRule> enabledGameRules;
     public Arena(String name){
@@ -38,6 +34,7 @@ public class Arena implements ConfigurationSerializable {
 
 //    Deserializes from arena storage file
     public Arena(Map<String, Object> map){
+//        this.id = UUID.fromString(id);
         this.name = (String) map.get("name");
         this.state = ArenaState.valueOf((String) map.get("state"));
         this.floorMaterial = Material.getMaterial((String) map.get("floor-material"));
@@ -48,6 +45,13 @@ public class Arena implements ConfigurationSerializable {
         this.leaveLocation = (Location) map.get("leave-location");
         this.spectateLocation = (Location) map.get("spectate-location");
         this.enabledGameRules = (List<GameRule>) map.get("enabled-gamerules");
+    }
+
+    public void initID(String id){
+        if(this.id != null)
+            Logger.error("Error: Shouldn't be using this method IDs are static");
+        else
+            this.id = UUID.fromString(id);
     }
 
     public List<String> isSetup(){
@@ -74,6 +78,10 @@ public class Arena implements ConfigurationSerializable {
 
     public String getName(){
         return this.name;
+    }
+    
+    public void setName(String name){
+        this.name = name;
     }
 
     public UUID getID(){

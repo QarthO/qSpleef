@@ -2,14 +2,13 @@ package gg.quartzdev.qspleef.commands;
 
 import gg.quartzdev.qspleef.qSpleef;
 import gg.quartzdev.qspleef.util.Language;
-import gg.quartzdev.qspleef.util.Logger;
 import gg.quartzdev.qspleef.util.Util;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public abstract class qCommand {
+public abstract class qCMD {
     String label;
     String name;
     String permissionGroup;
@@ -18,7 +17,7 @@ public abstract class qCommand {
     qSpleef plugin;
     Util util;
 
-    public qCommand(String label, String name, qSpleef plugin){
+    public qCMD(String label, String name, qSpleef plugin){
         this.label = label;
         this.name = name;
         this.plugin = plugin;
@@ -50,13 +49,13 @@ public abstract class qCommand {
         return false;
     }
     public boolean checkSyntax(CommandSender sender, String[] args){
-        Logger.log("args.length: " + args.length);
-        Logger.log("commandSyntax.split(\" \"): " + commandSyntax.split(" ").length);
-        if(args.length-1 != commandSyntax.split(" ").length){
-            String syntax = "/" + this.label + " " + this.name + " " + this.commandSyntax;
-            this.util.sendSyntax(sender, syntax);
-            return false;
-        }
-        return true;
+
+//        Checks if args count is same as syntax
+        if(args.length-1 == commandSyntax.split(" ").length)
+            return true;
+//        If wrong, sends syntax
+        String syntax = "/" + this.label + " " + this.name + " " + this.commandSyntax;
+        this.util.sendSyntax(sender, syntax);
+        return false;
     }
 }

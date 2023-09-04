@@ -7,8 +7,8 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commandcreate extends qCommand {
-    public Commandcreate(String label, String name, qSpleef plugin) {
+public class CMDcreate extends qCMD {
+    public CMDcreate(String label, String name, qSpleef plugin) {
         super(label, name, plugin);
         this.commandSyntax = "<arena-name>";
         this.permissionNode = "qspleef.admin.create";
@@ -29,7 +29,9 @@ public class Commandcreate extends qCommand {
     public boolean logic(CommandSender sender, String[] args) {
         String arenaName = args[1];
         Arena newArena = new Arena(arenaName);
-        this.plugin.getStorage().saveArena(newArena);
+//        this.plugin.getArenaManager().saveArena(newArena);
+        util.sendMessage(sender, "<green>Sucessfully created arena: <aqua><arena>");
+        util.sendMessage(sender, "...");
         return true;
     }
 }

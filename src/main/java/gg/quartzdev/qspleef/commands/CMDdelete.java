@@ -9,8 +9,8 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commanddelete extends qCommand {
-    public Commanddelete(String label, String name, qSpleef plugin) {
+public class CMDdelete extends qCMD {
+    public CMDdelete(String label, String name, qSpleef plugin) {
         super(label, name, plugin);
         this.commandSyntax = "<arena-name>";
         this.permissionNode = "qspleef.admin.delete";
@@ -36,7 +36,7 @@ public class Commanddelete extends qCommand {
             util.sendMessage(sender, Language.ERROR_ARENA_NOT_FOUND.setArena(args[1]));
         }
 
-        this.plugin.getStorage().loadArenas();
+//        this.plugin.getStorage().readArenas();
         return true;
     }
 }

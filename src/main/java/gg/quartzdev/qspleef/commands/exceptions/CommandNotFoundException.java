@@ -1,4 +1,4 @@
-package gg.quartzdev.qspleef.commands;
+package gg.quartzdev.qspleef.commands.exceptions;
 
 import gg.quartzdev.qspleef.util.Language;
 

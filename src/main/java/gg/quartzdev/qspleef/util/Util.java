@@ -1,11 +1,9 @@
 package gg.quartzdev.qspleef.util;
 
-import gg.quartzdev.qspleef.game.arena.Arena;
 import gg.quartzdev.qspleef.qSpleef;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

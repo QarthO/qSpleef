@@ -1,6 +1,7 @@
 package gg.quartzdev.qspleef.game;
 
 import gg.quartzdev.qspleef.game.arena.Arena;
+import gg.quartzdev.qspleef.game.arena.ArenaManager;
 import gg.quartzdev.qspleef.game.players.SpleefPlayer;
 import gg.quartzdev.qspleef.game.players.SpleefPlayerState;
 import gg.quartzdev.qspleef.qSpleef;
@@ -13,6 +14,9 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GameManager {
+    qSpleef plugin;
+    Util util;
+    ArenaManager arenaManager;
 
 //    Player UUID -> SpleefPlayer
     ConcurrentHashMap<UUID, SpleefPlayer> spleefPlayers;
@@ -21,14 +25,12 @@ public class GameManager {
 
     ConcurrentHashMap<UUID, Arena> arenas;
 
-    qSpleef plugin;
-    Util util;
-
     public GameManager(qSpleef plugin){
         this.plugin = plugin;
 //        this.util = plugin.getUtil();
         spleefPlayers = new ConcurrentHashMap<>();
         games = new ConcurrentHashMap<>();
+        this.arenaManager = plugin.getArenaManager();
     }
 
     /** Gets all the current games

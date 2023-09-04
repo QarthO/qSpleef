@@ -1,7 +1,7 @@
 package gg.quartzdev.qspleef.util;
 
-import gg.quartzdev.qspleef.commands.CommandNotFoundException;
-import gg.quartzdev.qspleef.commands.qCommand;
+import gg.quartzdev.qspleef.commands.exceptions.CommandNotFoundException;
+import gg.quartzdev.qspleef.commands.qCMD;
 import gg.quartzdev.qspleef.qSpleef;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -13,7 +13,7 @@ import org.reflections.Reflections;
 import java.util.*;
 
 public class CommandManager extends Command {
-    final String commandPackagePrefix = qCommand.class.getPackage().getName() + ".Command";
+    final String commandPackagePrefix = qCMD.class.getPackage().getName() + ".CMD";
     qSpleef plugin;
     List<String> aliases = new ArrayList<>();
     Util util;
@@ -80,12 +80,12 @@ public class CommandManager extends Command {
 //        this.unregister(Bukkit.getCommandMap());
     }
 
-    public qCommand loadCommandClass(String labelOrAlias, String name) throws CommandNotFoundException {
+    public qCMD loadCommandClass(String labelOrAlias, String name) throws CommandNotFoundException {
         Class<?> loaded;
-        qCommand qcommand;
+        qCMD qcommand;
         try {
             loaded = qSpleef.class.getClassLoader().loadClass(commandPackagePrefix + name.toLowerCase(Locale.ROOT));
-            qcommand = (qCommand) loaded.getConstructor(String.class, String.class, qSpleef.class).newInstance(labelOrAlias, name.toLowerCase(Locale.ROOT), this.plugin);
+            qcommand = (qCMD) loaded.getConstructor(String.class, String.class, qSpleef.class).newInstance(labelOrAlias, name.toLowerCase(Locale.ROOT), this.plugin);
         } catch (Exception e) {
             throw(new CommandNotFoundException(name));
         }
@@ -95,10 +95,10 @@ public class CommandManager extends Command {
     public List<String> getCommandList(){
         List<String> commandList = new ArrayList<>();
 
-        Reflections reflections = new Reflections(qCommand.class);
+        Reflections reflections = new Reflections(qCMD.class);
 
-        Set<Class<? extends qCommand>> allClasses =
-                reflections.getSubTypesOf(qCommand.class);
+        Set<Class<? extends qCMD>> allClasses =
+                reflections.getSubTypesOf(qCMD.class);
 
 //        Should never be empty, but just incase
         if(allClasses.isEmpty()){
@@ -107,7 +107,7 @@ public class CommandManager extends Command {
         }
 
 //
-        for(Class<? extends qCommand> clazz : allClasses)
+        for(Class<? extends qCMD> clazz : allClasses)
             commandList.add(clazz.getName().replace(commandPackagePrefix, ""));
 
         return commandList;

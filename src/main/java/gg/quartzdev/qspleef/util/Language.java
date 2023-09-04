@@ -41,16 +41,16 @@ public enum Language {
     SIGN_PLACEHOLDER_STATUS_RESETTING(""),
 
 //    ERRORS
-    ERROR_COMMAND_NOT_FOUND("<prefix> <red>Command not found: <command>"),
-    ERROR_COMMAND_SYNTAX("<prefix> <red>Syntax: <yellow><syntax>"),
-    ERROR_CREATE_FILE("<prefix> <red>Failed to create 'arenas.yml'"),
-    ERROR_SAVE_FILE("<prefix> <red>Failed to save '<yellow><file-name></yellow>'</red>"),
-    ERROR_READ_FILE("<prefix> <red>Failed to read '<yellow><file-name></yellow>'</red>"),
-    ERROR_PLACEHOLDER_ARENA("<red><placeholder-arena-error></red>"),
-    ERROR_NO_PERMISSION("<prefix> <red>Insufficient permissions"),
-    ERROR_ARENA_NOT_FOUND("<prefix> <red>Arena <aqua><arena></aqua> not found</red>"),
-    ERROR_JOIN_GAME("<prefix> <red>You're already in a game"),
-    ERROR_LEAVE_GAME("<prefix> <red>You're not in a game");
+    ERROR_COMMAND_NOT_FOUND("<red>Command not found: <command>"),
+    ERROR_COMMAND_SYNTAX("<red>Syntax: <yellow><syntax>"),
+    ERROR_CREATE_FILE("<red>Failed to create 'arenas.yml'"),
+    ERROR_SAVE_FILE("<red>Failed to save '<yellow><file-name></yellow>'</red>"),
+    ERROR_READ_FILE("<red>Failed to read '<yellow><file-name></yellow>'</red>"),
+    ERROR_PLACEHOLDER_ARENA("<placeholder-arena-error></red>"),
+    ERROR_NO_PERMISSION("<red>Insufficient permissions"),
+    ERROR_ARENA_NOT_FOUND("<red>Arena <aqua><arena></aqua> not found</red>"),
+    ERROR_JOIN_GAME("<red>You're already in a game"),
+    ERROR_LEAVE_GAME("<red>You're not in a game");
 
 
     private String message;
@@ -79,6 +79,11 @@ public enum Language {
 
     public Language setFile(String fileName){
         this.message = message.replaceAll("<file-name>", fileName);
+        return this;
+    }
+
+    public Language setPlaceholder(String tag, String value){
+        this.message = message.replaceAll("<" + tag + ">", value);
         return this;
     }
 }

@@ -3,16 +3,16 @@ package gg.quartzdev.qspleef.storage;
 import gg.quartzdev.qspleef.qSpleef;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class YMLconfig {
+public class qConfig {
     qSpleef plugin;
     FileConfiguration config;
-    public YMLconfig(qSpleef plugin){
+    public qConfig(qSpleef plugin){
+        this.plugin = plugin;
         this.config = plugin.getConfig();
         this.config.options().copyDefaults(true);
-//        this.storage = storage;
+        this.saveConfig();
     }
-
     public void saveConfig(){
-        plugin.saveConfig();
+        this.plugin.saveConfig();
     }
 }

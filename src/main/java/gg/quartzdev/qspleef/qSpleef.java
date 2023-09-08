@@ -4,21 +4,19 @@ import gg.quartzdev.qspleef.game.GameManager;
 import gg.quartzdev.qspleef.game.arena.Arena;
 import gg.quartzdev.qspleef.game.arena.ArenaManager;
 import gg.quartzdev.qspleef.metrics.Metrics;
+import gg.quartzdev.qspleef.storage.qConfig;
 import gg.quartzdev.qspleef.util.CommandManager;
 import gg.quartzdev.qspleef.util.Logger;
-import gg.quartzdev.qspleef.storage.qYML;
 import gg.quartzdev.qspleef.util.Util;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
 
 public final class qSpleef extends JavaPlugin {
 
-    private qSpleef plugin;
-    private qYML storage;
+    private qConfig config;
     private CommandManager commandManager;
     private GameManager gameManager;
     private ArenaManager arenaManger;
@@ -32,14 +30,19 @@ public final class qSpleef extends JavaPlugin {
         Logger.log("Enabling bStats Metrics");
         int pluginId = 18477;
         Metrics metrics = new Metrics(this, pluginId);
+//        Config
+        this.config = new qConfig(this);
 //        Utility Class
         this.util = new Util(this);
-//        Command Handler
-        this.commandManager = new CommandManager(getName().toLowerCase(Locale.ROOT), this);
+//        Spleef Arena Manager
+        this.arenaManger = new ArenaManager(this);
 //        Spleef Games Manager
         this.gameManager = new GameManager(this);
-        this.arenaManger = new ArenaManager(this);
 
+
+//        Command Handler
+        this.commandManager = new CommandManager(getName().toLowerCase(Locale.ROOT), this);
+//        Spleef Arena Manager
     }
 
     @Override
@@ -50,12 +53,9 @@ public final class qSpleef extends JavaPlugin {
 //        commandManager.disable();
     }
 
-    /**
-     *
-     * @return Storage
-     */
-    public qYML getStorage(){
-        return this.storage;
+    @Override
+    public qConfig qConfig(){
+        return this.config;
     }
 
     public ArenaManager getArenaManager(){
@@ -79,6 +79,13 @@ public final class qSpleef extends JavaPlugin {
     public String getVersion() {
         return this.getPluginMeta().getVersion();
     }
+
+    private CompletableFuture<Void> setupDataFolder(){
+        return CompletableFuture.supplyAsync(() -> {
+            this.config = new qConfig(this);
+            return null;
+        });
+    };
 
 
 }

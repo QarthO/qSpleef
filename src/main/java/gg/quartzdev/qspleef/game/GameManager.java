@@ -10,6 +10,7 @@ import gg.quartzdev.qspleef.util.Util;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -93,9 +94,10 @@ public class GameManager {
             util.sendMessage(player, Language.ERROR_ARENA_NOT_FOUND);
             return;
         }
+    }
 
-
-
-
+    public String listAvailableArenas(){
+        Set<String> arenaNames = this.arenaManager.getList();
+        return String.join(", ", arenaNames);
     }
 }

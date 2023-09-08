@@ -6,29 +6,23 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CMDcreate extends qCMD {
-    public CMDcreate(String label, String name, qSpleef plugin) {
+public class CMDlist extends qCMD{
+    public CMDlist(String label, String name, qSpleef plugin) {
         super(label, name, plugin);
-        this.commandSyntax = "<arena-name>";
+        this.commandSyntax = "";
         this.permissionGroup = "qspleef.basic";
-        this.permissionNode = "qspleef.command.create";
+        this.permissionNode = "qspleef.command.list";
     }
+
     @Override
     public List<String> getTabCompletes(CommandSender sender, String[] args) {
         List<String> rawCompletions = new ArrayList<>();
-
-        if(args.length < 2) return rawCompletions;
-
-        if(args.length == 2)
-            rawCompletions.add("<arena-name>");
-
         return rawCompletions;
     }
 
     @Override
     public boolean logic(CommandSender sender, String[] args) {
-        this.plugin.getArenaManager().createArena(args[1]);
-        util.sendMessage(sender, "<green>Response");
+        this.util.sendMessage(sender, this.plugin.getGameManager().listAvailableArenas());
         return true;
     }
 }

@@ -50,6 +50,8 @@ public abstract class qCMD {
     }
     public boolean checkSyntax(CommandSender sender, String[] args){
 
+        if(commandSyntax.equalsIgnoreCase("")) return true;
+
 //        Checks if args count is same as syntax
         if(args.length-1 == commandSyntax.split(" ").length)
             return true;

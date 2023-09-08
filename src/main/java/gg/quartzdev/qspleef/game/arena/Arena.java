@@ -34,7 +34,6 @@ public class Arena implements ConfigurationSerializable {
 
 //    Deserializes from arena storage file
     public Arena(Map<String, Object> map){
-//        this.id = UUID.fromString(id);
         this.name = (String) map.get("name");
         this.state = ArenaState.valueOf((String) map.get("state"));
         this.floorMaterial = Material.getMaterial((String) map.get("floor-material"));
@@ -47,9 +46,14 @@ public class Arena implements ConfigurationSerializable {
         this.enabledGameRules = (List<GameRule>) map.get("enabled-gamerules");
     }
 
+    /**
+     * Sets an Arena's ID upon loading from storage.
+     * IDs are final, and this method should never be called.
+     * @param id
+     */
     public void initID(String id){
         if(this.id != null)
-            Logger.error("Error: Shouldn't be using this method IDs are static");
+            Logger.error("Error: Shouldn't be using this method IDs are final");
         else
             this.id = UUID.fromString(id);
     }
@@ -57,8 +61,8 @@ public class Arena implements ConfigurationSerializable {
     public List<String> isSetup(){
         List<String> missing = new ArrayList<>();
 //        If missing and id or name, something is broken
-        if(this.id == null) return null;
-        if(this.name == null) return null;
+        if(this.id == null) missing.add("ID");
+        if(this.name == null) missing.add("Name");
 
 //        Minimum Requirements for an arena to be playable
         if(this.joinLocation == null) missing.add("Join location");

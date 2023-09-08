@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class qYML {
 
-    private final qSpleef plugin;
+    final qSpleef plugin;
     File file;
     YamlConfiguration config;
     String schemaVersion = "1.0";
@@ -24,7 +24,7 @@ public abstract class qYML {
     }
 
     private File loadFile(String name){
-        Logger.log("<blue>Attempting to load file " + name);
+        Logger.log("- inside loadFile" + Thread.currentThread().getName());
         File file = new File(plugin.getDataFolder(), name);
         try {
             if(file.createNewFile()){
@@ -38,13 +38,12 @@ public abstract class qYML {
             this.config.setComments("schema-version", notes);
             this.config.save(file);
         } catch(IOException e){
-            Logger.error(e.getStackTrace());
+//            Logger.error(e.getStackTrace());
             Logger.error(Language.ERROR_CREATE_FILE.setFile(file.getName()));
             return null;
         }
         return file;
     }
-
     public void saveFile() {
         Bukkit.getAsyncScheduler().runNow(plugin, scheduledTask -> {
             try {

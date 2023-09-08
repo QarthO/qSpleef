@@ -44,6 +44,7 @@ public enum Language {
     ERROR_COMMAND_NOT_FOUND("<red>Command not found: <command>"),
     ERROR_COMMAND_SYNTAX("<red>Syntax: <yellow><syntax>"),
     ERROR_CREATE_FILE("<red>Failed to create 'arenas.yml'"),
+    ERROR_CORRUPT_FILE("<red><file-name> might be corrupt, generate a new one "),
     ERROR_SAVE_FILE("<red>Failed to save '<yellow><file-name></yellow>'</red>"),
     ERROR_READ_FILE("<red>Failed to read '<yellow><file-name></yellow>'</red>"),
     ERROR_PLACEHOLDER_ARENA("<placeholder-arena-error></red>"),

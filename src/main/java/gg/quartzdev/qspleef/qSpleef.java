@@ -38,8 +38,7 @@ public final class qSpleef extends JavaPlugin {
         this.arenaManger = new ArenaManager(this);
 //        Spleef Games Manager
         this.gameManager = new GameManager(this);
-
-
+        
 //        Command Handler
         this.commandManager = new CommandManager(getName().toLowerCase(Locale.ROOT), this);
 //        Spleef Arena Manager
@@ -53,20 +52,31 @@ public final class qSpleef extends JavaPlugin {
 //        commandManager.disable();
     }
 
-    @Override
-    public qConfig qConfig(){
+    public qConfig getConfigData(){
         return this.config;
     }
 
     public ArenaManager getArenaManager(){
+//        Initializes the arena manager if it hasn't already
+//        if(this.arenaManger == null)
+//            this.arenaManger = new ArenaManager(this);
+//        Returns the arena manager
         return this.arenaManger;
     }
 
     public GameManager getGameManager(){
+//        Initializes the game manager if it hasn't already
+//        if(this.gameManager == null)
+//            this.gameManager = new GameManager(this);
+//        Returns the game manager
         return this.gameManager;
     }
 
     public Util getUtil(){
+//        Initializes the utility class if it hasn't already
+        if(this.util == null)
+            this.util = new Util(this);
+//        Returns the utility class
         return this.util;
     }
 

@@ -15,15 +15,18 @@ public class YMLarenas extends qYML {
     public YMLarenas(qSpleef plugin){
         super(plugin, "arenas");
     }
-    public Set<Arena> loadAll(){
+    public @NotNull Set<Arena> loadAll(){
+        Logger.log("loadAll");
         Set<Arena> arenas = new HashSet<>();
         Set<String> arenaIDsList = this.getArenasSection().getKeys(false);
+        Logger.log("break");
         if(arenaIDsList.isEmpty()) return arenas;
         for(String id : arenaIDsList){
             Arena arena = this.load(id);
             if(arena != null)
                 arenas.add(arena);
         }
+        Logger.log("end loadAll");
         return arenas;
     }
     public void save(Arena arena){
@@ -38,7 +41,9 @@ public class YMLarenas extends qYML {
             return null;
         }
         Arena arena = (Arena) arenaData;
-//        arena.initID(id);
+        if(arena.getID() != null)
+            Logger.log(arena.getID().toString());
+        arena.initID(id);
         return arena;
     }
     private @NotNull ConfigurationSection getArenasSection(){

@@ -3,6 +3,7 @@ package gg.quartzdev.qspleef.game.arena;
 import gg.quartzdev.qspleef.qSpleef;
 import gg.quartzdev.qspleef.storage.YMLarenas;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -33,6 +34,7 @@ public class ArenaManager {
 
     public void reloadArenas(){
         Set<Arena> arenas = this.storage.loadAll();
+        arenasMap.clear();
         for(Arena arena : arenas){
             arenasMap.put(arena.getName().toLowerCase(Locale.ROOT), arena);
         }
@@ -40,12 +42,10 @@ public class ArenaManager {
 
     public Set<String> getList() {
         Set<String> arenaNames = new HashSet<>();
-        Set<Arena> arenas = this.storage.loadAll();
-        if(arenas.isEmpty())
-            return arenaNames;
-        for(Arena arena : arenas){
-            arenaNames.add(arena.getName());
-        }
+        Collection<Arena> arenas = arenasMap.values();
+        if(!arenas.isEmpty())
+            for(Arena arena : arenas)
+                arenaNames.add(arena.getName());
         return arenaNames;
     }
 

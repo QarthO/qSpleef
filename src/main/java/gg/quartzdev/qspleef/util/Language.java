@@ -49,9 +49,10 @@ public enum Language {
     ERROR_READ_FILE("<red>Failed to read '<yellow><file-name></yellow>'</red>"),
     ERROR_PLACEHOLDER_ARENA("<placeholder-arena-error></red>"),
     ERROR_NO_PERMISSION("<red>Insufficient permissions"),
-    ERROR_ARENA_NOT_FOUND("<red>Arena <aqua><arena></aqua> not found</red>"),
-    ERROR_JOIN_GAME("<red>You're already in a game"),
-    ERROR_LEAVE_GAME("<red>You're not in a game");
+    ERROR_ARENA_NOT_FOUND("<red>Arena not found: <aqua><arena>"),
+    ERROR_CONSOLE_JOIN("<red>Unable to join: You must be a player"),
+    ERROR_JOIN_GAME("<red>Unable to join: You're already in a game"),
+    ERROR_LEAVE_GAME("<red>Unable to leave: You're not in a game");
 
 
     private String message;

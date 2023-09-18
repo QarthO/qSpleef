@@ -4,19 +4,17 @@ import gg.quartzdev.qspleef.game.arena.Arena;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import java.util.UUID;
-
 public class SpleefPlayer {
 
     private Player player;
-    private Arena currentArena;
-
+    private Arena arena;
     private Inventory playerInventory;
 
     private SpleefPlayerState state;
 
-    public SpleefPlayer(Player player, SpleefPlayerState state) {
+    public SpleefPlayer(Player player, Arena arena, SpleefPlayerState state) {
         this.player = player;
+        this.arena = arena;
         this.state = state;
     }
 
@@ -26,11 +24,11 @@ public class SpleefPlayer {
     }
 
     public void setArena(Arena arena){
-        this.currentArena = arena;
+        this.arena = arena;
     }
 
     public Arena getArena(){
-        return this.currentArena;
+        return this.arena;
     }
 
     public SpleefPlayerState getState(){

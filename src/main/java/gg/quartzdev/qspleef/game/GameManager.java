@@ -54,8 +54,15 @@ public class GameManager {
         return this.arenas.values();
     }
 
-    public Game getGame(String arenaName){
-        return games.get(arenaName);
+    public Game getGame(Arena arena){
+//        tries to get from games map
+        Game game = this.games.get(arena.getID());
+//        if game doesn't exist with that arena
+        if(game == null)
+//            create a new game
+            game = new Game(arena);
+//        return the game
+        return game;
     }
 
     public boolean isPlaying(Player player){
@@ -78,22 +85,29 @@ public class GameManager {
         return true;
     }
 
-    public void join(Player player, String arenaName){
+    public boolean join(Player player, String arenaName){
 
+//        Gets arena from args
+        Arena arena = this.arenaManager.getArena(arenaName);
+//        Checks if arena exists
+        if(arena == null){
+            this.util.sendMessage(player, Language.ERROR_ARENA_NOT_FOUND.setArena(arenaName));
+            return false;
+        }
+//        Checks if player is already in a game
         if(this.isPlaying(player)){
             util.sendMessage(player, Language.ERROR_JOIN_GAME);
-            return;
+            return false;
         }
-
+//        Creates SpleefPlayer
         SpleefPlayer spleefPlayer = new SpleefPlayer(player, SpleefPlayerState.JOINING);
+//        Adds to spleef players (map to validate if a player is in a game or not without looping thru every game)
         spleefPlayers.put(player.getUniqueId(), spleefPlayer);
 
-        Game game = this.getGame(arenaName);
-
-        if(game == null){
-            util.sendMessage(player, Language.ERROR_ARENA_NOT_FOUND);
-            return;
-        }
+//        Gets game from arena
+        Game game = this.getGame(arena);
+        game.addPlayer(player, SpleefPlayerState.JOINING);
+        return true;
     }
 
     public String listAvailableArenas(){

@@ -3,7 +3,6 @@ package gg.quartzdev.qspleef.commands;
 import gg.quartzdev.qspleef.game.GameManager;
 import gg.quartzdev.qspleef.game.arena.Arena;
 import gg.quartzdev.qspleef.qSpleef;
-import gg.quartzdev.qspleef.util.Language;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -32,9 +31,9 @@ public class CMDdelete extends qCMD {
         String arenaName = args[1];
         Arena newArena = new Arena(arenaName);
         GameManager gm = this.plugin.getGameManager();
-        if(gm.getGame(args[1]) == null){
-            util.sendMessage(sender, Language.ERROR_ARENA_NOT_FOUND.setArena(args[1]));
-        }
+//        if(gm.getGame(args[1]) == null){
+//            util.sendMessage(sender, Language.ERROR_ARENA_NOT_FOUND.setArena(args[1]));
+//        }
 
 //        this.plugin.getStorage().readArenas();
         return true;

@@ -12,6 +12,9 @@ public class Game {
     private UUID id;
     private Arena arena;
     private ConcurrentHashMap<UUID, SpleefPlayer> players;
+
+//    Number of players actually playing in the arena (does not include spectators)
+    private int playerCount;
     private GameState state;
 
 //    private GameState;
@@ -31,9 +34,15 @@ public class Game {
         }
     }
 
+    private void checkStartRequirements(){
+        if(playerCount >= this.arena.getMinPlayers())
+            this.start();
+    }
+
     public void addPlayer(Player player, SpleefPlayerState state){
         SpleefPlayer spleefPlayer = new SpleefPlayer(player, this.arena, state);
         players.put(player.getUniqueId(), spleefPlayer);
+        this.checkStartRequirements();
     }
 
     public void removePlayer(Player player){

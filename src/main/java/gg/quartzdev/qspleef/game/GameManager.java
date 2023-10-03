@@ -100,7 +100,7 @@ public class GameManager {
             return false;
         }
 //        Creates SpleefPlayer
-        SpleefPlayer spleefPlayer = new SpleefPlayer(player, SpleefPlayerState.JOINING);
+        SpleefPlayer spleefPlayer = new SpleefPlayer(player, arena, SpleefPlayerState.JOINING);
 //        Adds to spleef players (map to validate if a player is in a game or not without looping thru every game)
         spleefPlayers.put(player.getUniqueId(), spleefPlayer);
 
